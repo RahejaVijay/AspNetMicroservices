@@ -9,15 +9,21 @@ public class Controller
 
     public void Do()
     {
-        Business business = new Business();
-        business.PerformWork(this.Work);
+        Business business = new Business(this.Work);
+        business.PerformWork();
     }
 }
 
 
 public class Business
 {
-    public void PerformWork(Action action)
+    private Action action;
+    public Business(Action action)
+    {
+        this.action = action;
+    }
+
+    public void PerformWork()
     {
         action();
     }
