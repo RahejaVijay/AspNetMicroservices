@@ -1,2 +1,27 @@
 
-Akshay code
+public class Controller
+{
+
+    private void Work()
+    {
+        Console.WriteLine("Inside Controller");
+    }
+
+    public void Do()
+    {
+        Business business = new Business();
+        business.PerformWork(this.Work);
+    }
+}
+
+
+public class Business
+{
+    public void PerformWork(Action action)
+    {
+        action();
+    }
+}
+
+Controller controller = new Controller();
+controller.Do();
