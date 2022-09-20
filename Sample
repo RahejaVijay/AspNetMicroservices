@@ -1,15 +1,19 @@
-
 public class Controller
 {
 
-    private void Work()
+    private void SetSession(string key,object value)
     {
         Console.WriteLine("Inside Controller");
     }
 
+    private Object GetSession(string key)
+    {
+        return null;
+    }
+
     public void Do()
     {
-        Business business = new Business(this.Work);
+        Business business = new Business(this.SetSession, this.GetSession);
         business.PerformWork();
     }
 }
@@ -17,17 +21,16 @@ public class Controller
 
 public class Business
 {
-    private Action action;
-    public Business(Action action)
+    private Action<string, object> setSession;
+    private Func<string, object> getSession;
+    public Business(Action<string,object> setSession, Func<string, object> getSession)
     {
-        this.action = action;
+        this.setSession = setSession;
+        this.getSession = getSession;
     }
 
     public void PerformWork()
     {
-        action();
+      
     }
 }
-
-Controller controller = new Controller();
-controller.Do();
